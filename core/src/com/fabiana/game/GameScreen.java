@@ -40,6 +40,8 @@ public class GameScreen extends ScreenAdapter{
     
     private void updateMainCharacterDirection(){
         if(Gdx.input.isKeyPressed(Keys.ANY_KEY)){
+            mainCharacter.SPEED = 3;
+
             if(Gdx.input.isKeyPressed(Keys.LEFT)){
               mainCharacter.setNextDirection(mainCharacter.DIRECTION_LEFT);          
             }
@@ -52,11 +54,10 @@ public class GameScreen extends ScreenAdapter{
             if(Gdx.input.isKeyPressed(Keys.UP)){
               mainCharacter.setNextDirection(mainCharacter.DIRECTION_UP);
             }
-//            WorldRenderer.count = 2;
         }else{
-                mainCharacter.setNextDirection(mainCharacter.DIRECTION_STILL);
-//                WorldRenderer.count = 1;
-        }
+                mainCharacter.SPEED = 1;
+                mainCharacter.setNextDirection(mainCharacter.DIRECTION_DOWN);
+            }
             
     }
 

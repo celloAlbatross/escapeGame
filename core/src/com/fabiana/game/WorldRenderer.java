@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import javafx.scene.text.Text;
 
 
 public class WorldRenderer {
@@ -11,12 +12,17 @@ public class WorldRenderer {
 
     private World world;
     private EscapeGame escapeGame;
+    
     private Texture characterImg;
+    private Texture characterImg1;
+    private Texture backGround;
+    
     private MainCharacter mainCharacter;
     private SpriteBatch batch;
-    private Texture characterImg1;
+    
     
     static public int count = 0;
+    static private int mapSpeed = 0;
    
     
     public WorldRenderer(EscapeGame escapeGame, World world){
@@ -27,6 +33,7 @@ public class WorldRenderer {
 
         characterImg = new Texture("25%_main_character.png");
         characterImg1 = new Texture("main_character_1.png");
+        backGround = new Texture("BADLAND-day.jpg");
         
         mainCharacter = world.getMainCharacter();
         
@@ -35,12 +42,17 @@ public class WorldRenderer {
     public void render(float delta){
         
         batch.begin();
+        if(mapSpeed > -1110){
+            mapSpeed -= 1;
+        }
+        System.out.println(mapSpeed);
+        batch.draw(backGround, mapSpeed, -200);
         count++;
-        if(count > 50){
+        if(count > 30){
             count = 0;
         }
         Vector2 pos = world.getMainCharacter().getPosition();
-        if(count < 25){
+        if(count < 15){
             batch.draw(characterImg, pos.x, pos.y);
             
         }else{
