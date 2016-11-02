@@ -52,8 +52,10 @@ public class GameScreen extends ScreenAdapter{
             if(Gdx.input.isKeyPressed(Keys.UP)){
               mainCharacter.setNextDirection(mainCharacter.DIRECTION_UP);
             }
+//            WorldRenderer.count = 2;
         }else{
                 mainCharacter.setNextDirection(mainCharacter.DIRECTION_STILL);
+//                WorldRenderer.count = 1;
         }
             
     }
