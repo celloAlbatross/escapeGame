@@ -16,6 +16,7 @@ public class WorldRenderer {
     private Texture characterImg;
     private Texture characterImg1;
     private Texture backGround;
+    private Texture Rock;
     
     private MainCharacter mainCharacter;
     private SpriteBatch batch;
@@ -34,6 +35,7 @@ public class WorldRenderer {
         characterImg = new Texture("25%_main_character.png");
         characterImg1 = new Texture("main_character_1.png");
         backGround = new Texture("BADLAND-day.jpg");
+        //Rock = new Texture("Rock.png");
         
         mainCharacter = world.getMainCharacter();
         
@@ -42,15 +44,16 @@ public class WorldRenderer {
     public void render(float delta){
         
         batch.begin();
+        
         if(mapSpeed > -1110){
             mapSpeed -= 1;
         }
-        System.out.println(mapSpeed);
         batch.draw(backGround, mapSpeed, -200);
         count++;
         if(count > 30){
             count = 0;
         }
+        //batch.draw(Rock, 100, 100, 100, 100);
         Vector2 pos = world.getMainCharacter().getPosition();
         if(count < 15){
             batch.draw(characterImg, pos.x, pos.y);
