@@ -1,16 +1,18 @@
 package com.fabiana.game;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import javafx.scene.text.Text;
 
 
 public class WorldRenderer {
     
 
-    private GameWorld world;
+    private GameWorld gameWorld;
     private EscapeGame escapeGame;
     
     private Texture characterImg;
@@ -21,24 +23,28 @@ public class WorldRenderer {
     private MainCharacter mainCharacter;
     private SpriteBatch batch;
     
+    private OrthographicCamera camera;
+    
     
     static public int count = 0;
     static private int mapSpeed = 0;
    
+    Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
     
-    public WorldRenderer(EscapeGame escapeGame, GameWorld world){
+    public WorldRenderer(EscapeGame escapeGame, GameWorld gameWorld){
         this.escapeGame = escapeGame;
         batch = escapeGame.batch;
         
-        this.world = world;
+        this.gameWorld = gameWorld;
 
         characterImg = new Texture("25%_main_character.png");
         characterImg1 = new Texture("main_character_1.png");
         backGround = new Texture("BADLAND-day.jpg");
         //Rock = new Texture("Rock.png");
         
-        mainCharacter = world.getMainCharacter();
-        
+        mainCharacter = gameWorld.getMainCharacter();
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, escapeGame.WIDTH, escapeGame.HEIGHT);
     }
     
     public void render(float delta){
@@ -54,7 +60,7 @@ public class WorldRenderer {
             count = 0;
         }
         //batch.draw(Rock, 100, 100, 100, 100);
-        Vector2 pos = world.getMainCharacter().getPosition();
+        Vector2 pos = gameWorld.getMainCharacter().getPosition();
         if(count < 15){
             batch.draw(characterImg, pos.x, pos.y);
             
@@ -63,5 +69,8 @@ public class WorldRenderer {
             
         }
         batch.end();
+        
+        debugRenderer.render(gameWorld.world,camera.combined);
+        
     }
 }

@@ -1,6 +1,12 @@
 package com.fabiana.game;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,6 +43,23 @@ public class MainCharacter {
         
         this.gameWorld = gameWorld;
         
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyType.DynamicBody;
+        bodyDef.position.set(x, y);
+        Body body = gameWorld.world.createBody(bodyDef);
+
+             
+        CircleShape circle = new CircleShape();
+        circle.setRadius(30f);
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = circle;
+        fixtureDef.density = 0.5f; 
+        fixtureDef.friction = 0.4f;
+        fixtureDef.restitution = 0.6f;
+        
+        Fixture fixture = body.createFixture(fixtureDef);
+        circle.dispose();
+
     }
      
     public void update(){
