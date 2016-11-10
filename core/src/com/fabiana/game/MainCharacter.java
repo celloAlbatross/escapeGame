@@ -13,10 +13,11 @@ public class MainCharacter {
     public static final int DIRECTION_LEFT = 4;
     public static final int DIRECTION_STILL = 0;
     public static int SPEED = 3;
+    public static int GRAVITY = 1;
     
     private int currentDirection;
     private int nextDirection;
-    private World world;
+    private GameWorld gameWorld;
  
     
     
@@ -28,13 +29,13 @@ public class MainCharacter {
         {-1,0}
     };
     
-     public MainCharacter(int x,int y,World world){
+     public MainCharacter(int x,int y,GameWorld gameWorld){
         position = new Vector2(x,y);
         
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
         
-        this.world = world;
+        this.gameWorld = gameWorld;
         
     }
      
@@ -45,6 +46,9 @@ public class MainCharacter {
             
         position.x += SPEED * DIR_DIFF[currentDirection][0];
         position.y += SPEED * DIR_DIFF[currentDirection][1];
+        position.y -= GRAVITY;
+        
+        System.out.println(position.y);
     }
   
     

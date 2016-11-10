@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 public class WorldRenderer {
     
 
-    private World world;
+    private GameWorld world;
     private EscapeGame escapeGame;
     
     private Texture characterImg;
@@ -26,7 +26,7 @@ public class WorldRenderer {
     static private int mapSpeed = 0;
    
     
-    public WorldRenderer(EscapeGame escapeGame, World world){
+    public WorldRenderer(EscapeGame escapeGame, GameWorld world){
         this.escapeGame = escapeGame;
         batch = escapeGame.batch;
         

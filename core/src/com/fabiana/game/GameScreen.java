@@ -17,17 +17,17 @@ public class GameScreen extends ScreenAdapter{
     private EscapeGame escapeGame;
     private Texture characterImg;
     private MainCharacter mainCharacter;
-    private World world;
+    private GameWorld gameWorld;
     private WorldRenderer worldRenderer;
     
     public GameScreen(EscapeGame escapeGame){
         this.escapeGame = escapeGame;  
        
-        world = new World(escapeGame);
-        worldRenderer = new WorldRenderer(escapeGame,world);
+        gameWorld = new GameWorld(escapeGame);
+        worldRenderer = new WorldRenderer(escapeGame,gameWorld);
         characterImg = new Texture("25%_main_character.png");
         
-        mainCharacter = world.getMainCharacter();
+        mainCharacter = gameWorld.getMainCharacter();
     }
 
     public void update(float delta){
@@ -35,7 +35,7 @@ public class GameScreen extends ScreenAdapter{
         
         updateMainCharacterDirection();
                
-        world.update(delta);
+        gameWorld.update(delta);
     }
     
     private void updateMainCharacterDirection(){
@@ -55,9 +55,9 @@ public class GameScreen extends ScreenAdapter{
               mainCharacter.setNextDirection(mainCharacter.DIRECTION_UP);
             }
         }else{
-                mainCharacter.SPEED = 1;
-                mainCharacter.setNextDirection(mainCharacter.DIRECTION_DOWN);
-            }
+//                mainCharacter.SPEED = 1;
+                mainCharacter.setNextDirection(mainCharacter.DIRECTION_STILL);
+             }
             
     }
 
