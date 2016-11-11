@@ -55,6 +55,14 @@ public class WorldRenderer {
             mapSpeed -= 1;
         }
         batch.draw(backGround, mapSpeed, -200);
+        flyRenderer();
+        batch.end();
+        
+        debugRenderer.render(gameWorld.world,camera.combined);
+        
+    }
+    
+    public void flyRenderer(){
         count++;
         if(count > 30){
             count = 0;
@@ -68,9 +76,5 @@ public class WorldRenderer {
             batch.draw(characterImg1, pos.x, pos.y);
             
         }
-        batch.end();
-        
-        debugRenderer.render(gameWorld.world,camera.combined);
-        
     }
 }

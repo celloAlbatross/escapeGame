@@ -21,9 +21,11 @@ public class MainCharacter {
     public static int SPEED = 3;
     public static int GRAVITY = 1;
     
+    
     private int currentDirection;
     private int nextDirection;
     private GameWorld gameWorld;
+    public Body body;
  
     
     
@@ -43,10 +45,38 @@ public class MainCharacter {
         
         this.gameWorld = gameWorld;
         
+        initBody(x, y);
+
+    }
+     
+    public void moveUpdate(){
+    
+        
+        currentDirection = nextDirection;
+            
+        position.x += SPEED * DIR_DIFF[currentDirection][0];
+        position.y += SPEED * DIR_DIFF[currentDirection][1];
+        position.y -= GRAVITY;
+        
+  
+        System.out.println(position.y);
+    }
+  
+    
+
+    public Vector2 getPosition(){
+        return position;
+    }
+    
+    public void setNextDirection(int dir){
+        nextDirection = dir;
+    }
+    
+    public void initBody(int x,int y){
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyType.DynamicBody;
         bodyDef.position.set(x, y);
-        Body body = gameWorld.world.createBody(bodyDef);
+        body = gameWorld.world.createBody(bodyDef);
 
              
         CircleShape circle = new CircleShape();
@@ -59,29 +89,6 @@ public class MainCharacter {
         
         Fixture fixture = body.createFixture(fixtureDef);
         circle.dispose();
-
-    }
-     
-    public void update(){
-    
-        
-        currentDirection = nextDirection;
-            
-        position.x += SPEED * DIR_DIFF[currentDirection][0];
-        position.y += SPEED * DIR_DIFF[currentDirection][1];
-        position.y -= GRAVITY;
-        
-        System.out.println(position.y);
-    }
-  
-    
-
-    public Vector2 getPosition(){
-        return position;
-    }
-    
-    public void setNextDirection(int dir){
-        nextDirection = dir;
     }
     
     
