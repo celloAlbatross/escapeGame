@@ -7,11 +7,15 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 import java.util.LinkedList;
 import java.util.List;
 
 public class MainCharacter {
     private Vector2 position;
+    
+    ;
+
 
     public static final int DIRECTION_UP = 1;
     public static final int DIRECTION_RIGHT = 2;
@@ -24,9 +28,9 @@ public class MainCharacter {
     
     private int currentDirection;
     private int nextDirection;
-    private GameWorld gameWorld;
+    private World world;
     public Body body;
- 
+    
     
     
     private static final int [][] DIR_DIFF = new int [][] {
@@ -37,15 +41,18 @@ public class MainCharacter {
         {-1,0}
     };
     
-     public MainCharacter(int x,int y,GameWorld gameWorld){
+     public MainCharacter(int x,int y,World world){
         position = new Vector2(x,y);
         
+        this.world = world;
+        initBody(x, y);
+              
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
         
-        this.gameWorld = gameWorld;
         
-        initBody(x, y);
+        
+        
 
     }
      
@@ -57,6 +64,8 @@ public class MainCharacter {
         position.x += SPEED * DIR_DIFF[currentDirection][0];
         position.y += SPEED * DIR_DIFF[currentDirection][1];
         position.y -= GRAVITY;
+        
+        
         
   
         System.out.println(position.y);
@@ -75,12 +84,12 @@ public class MainCharacter {
     public void initBody(int x,int y){
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyType.DynamicBody;
-        bodyDef.position.set(x, y);
-        body = gameWorld.world.createBody(bodyDef);
+        bodyDef.position.set(200/GameWorld.PPM, 200/GameWorld.PPM);
+        body = world.createBody(bodyDef);
 
              
         CircleShape circle = new CircleShape();
-        circle.setRadius(30f);
+        circle.setRadius(30f/GameWorld.PPM);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
         fixtureDef.density = 0.5f; 

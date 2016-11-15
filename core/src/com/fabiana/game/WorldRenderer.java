@@ -44,7 +44,8 @@ public class WorldRenderer {
         
         mainCharacter = gameWorld.getMainCharacter();
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, escapeGame.WIDTH, escapeGame.HEIGHT);
+        camera.setToOrtho(false, escapeGame.WIDTH/GameWorld.PPM, 
+                            escapeGame.HEIGHT/GameWorld.PPM);
     }
     
     public void render(float delta){
@@ -60,6 +61,7 @@ public class WorldRenderer {
         
         debugRenderer.render(gameWorld.world,camera.combined);
         
+        
     }
     
     public void flyRenderer(){
@@ -68,12 +70,12 @@ public class WorldRenderer {
             count = 0;
         }
         //batch.draw(Rock, 100, 100, 100, 100);
-        Vector2 pos = gameWorld.getMainCharacter().getPosition();
+        Vector2 pos = mainCharacter.body.getPosition();
         if(count < 15){
-            batch.draw(characterImg, pos.x, pos.y);
+            batch.draw(characterImg, pos.x * GameWorld.PPM - characterImg.getWidth() / 2, pos.y * GameWorld.PPM - characterImg.getHeight() / 2);
             
         }else{
-            batch.draw(characterImg1, pos.x, pos.y);
+            batch.draw(characterImg1, pos.x * GameWorld.PPM - characterImg1.getWidth() / 2, pos.y * GameWorld.PPM - characterImg1.getHeight() / 2);
             
         }
     }

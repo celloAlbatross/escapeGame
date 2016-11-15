@@ -20,13 +20,15 @@ public class GameWorld {
     public static int SPWAN_AT_X = 60;
     public static int SPWAN_AT_Y = 60;
     
+    public static final int PPM = 100;
     
-    World world = new World(new Vector2(0, -10), true); 
+    
+    public static World world = new World(new Vector2(0, -1), true); 
     
 
     public GameWorld(EscapeGame escapeGame) {
         this.escapeGame = escapeGame;
-        mainCharacter = new MainCharacter(SPWAN_AT_X,SPWAN_AT_Y,this);
+        mainCharacter = new MainCharacter(SPWAN_AT_X,SPWAN_AT_Y,world);
     }
      
     MainCharacter getMainCharacter(){
@@ -35,5 +37,6 @@ public class GameWorld {
     
     public void update(float deta){
         mainCharacter.moveUpdate();
+        world.step(1/60f, 6, 2);
     }
 }

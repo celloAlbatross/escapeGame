@@ -34,8 +34,8 @@ public class GameScreen extends ScreenAdapter {
         
         mainCharacter = gameWorld.getMainCharacter();
         
-        vel = this.mainCharacter.body.getLinearVelocity();
-        pos = this.mainCharacter.body.getPosition();
+        vel = mainCharacter.body.getLinearVelocity();
+        pos = mainCharacter.body.getPosition();
     }
 
     public void update (float delta) {
@@ -47,20 +47,34 @@ public class GameScreen extends ScreenAdapter {
     }
     
     private void updateMainCharacterDirection() {
+        System.out.println(pos.x + " " + pos.y);
         if(Gdx.input.isKeyPressed(Keys.ANY_KEY)){
             mainCharacter.SPEED = 3;
 
             if(Gdx.input.isKeyPressed(Keys.LEFT)){
-              mainCharacter.setNextDirection(mainCharacter.DIRECTION_LEFT);          
+                mainCharacter.setNextDirection(mainCharacter.DIRECTION_LEFT);
+                mainCharacter.body.applyLinearImpulse(-5f/GameWorld.PPM, 
+                                                      0, 
+                                                      pos.x, pos.y, true);
+                
             }
             if(Gdx.input.isKeyPressed(Keys.RIGHT)){
               mainCharacter.setNextDirection(mainCharacter.DIRECTION_RIGHT);
+              mainCharacter.body.applyLinearImpulse(5f/GameWorld.PPM, 
+                                                    0, 
+                                                    pos.x, pos.y, true);
             }
             if(Gdx.input.isKeyPressed(Keys.DOWN)){
               mainCharacter.setNextDirection(mainCharacter.DIRECTION_DOWN);
+              mainCharacter.body.applyLinearImpulse(0, 
+                                                    -5f/GameWorld.PPM, 
+                                                    pos.x, pos.y, true);
             }
             if(Gdx.input.isKeyPressed(Keys.UP)){
               mainCharacter.setNextDirection(mainCharacter.DIRECTION_UP);
+              mainCharacter.body.applyLinearImpulse(0, 
+                                                    5f/GameWorld.PPM, 
+                                                    pos.x, pos.y, true);
             }
         }else{
 //                mainCharacter.SPEED = 1;
