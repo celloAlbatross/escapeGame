@@ -75,7 +75,7 @@ public class WorldRenderer {
             batch.draw(characterImg, pos.x * GameWorld.PPM - characterImg.getWidth() / 2, pos.y * GameWorld.PPM - characterImg.getHeight() / 2);
             
         }else{
-            batch.draw(characterImg1, pos.x * GameWorld.PPM - characterImg1.getWidth() / 2, pos.y * GameWorld.PPM - characterImg1.getHeight() / 2);
+                batch.draw(characterImg1, pos.x * GameWorld.PPM - characterImg1.getWidth() / 2, pos.y * GameWorld.PPM - characterImg1.getHeight() / 2);
             
         }
     }

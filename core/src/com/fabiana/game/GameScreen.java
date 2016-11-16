@@ -36,6 +36,7 @@ public class GameScreen extends ScreenAdapter {
         
         vel = mainCharacter.body.getLinearVelocity();
         pos = mainCharacter.body.getPosition();
+       
     }
 
     public void update (float delta) {
@@ -47,41 +48,19 @@ public class GameScreen extends ScreenAdapter {
     }
     
     private void updateMainCharacterDirection() {
-        System.out.println(pos.x + " " + pos.y);
-        if(Gdx.input.isKeyPressed(Keys.ANY_KEY)){
-            mainCharacter.SPEED = 3;
-
+        
             if(Gdx.input.isKeyPressed(Keys.LEFT)){
-                mainCharacter.setNextDirection(mainCharacter.DIRECTION_LEFT);
-                mainCharacter.body.applyLinearImpulse(-5f/GameWorld.PPM, 
-                                                      0, 
-                                                      pos.x, pos.y, true);
-                
+                mainCharacter.move(mainCharacter.SPEED_LEFT, 0);
             }
             if(Gdx.input.isKeyPressed(Keys.RIGHT)){
-              mainCharacter.setNextDirection(mainCharacter.DIRECTION_RIGHT);
-              mainCharacter.body.applyLinearImpulse(5f/GameWorld.PPM, 
-                                                    0, 
-                                                    pos.x, pos.y, true);
+                mainCharacter.move(mainCharacter.SPEED_RIGHT, 0);
             }
             if(Gdx.input.isKeyPressed(Keys.DOWN)){
-              mainCharacter.setNextDirection(mainCharacter.DIRECTION_DOWN);
-              mainCharacter.body.applyLinearImpulse(0, 
-                                                    -5f/GameWorld.PPM, 
-                                                    pos.x, pos.y, true);
+                mainCharacter.move(0, mainCharacter.SPEED_DOWN);
             }
             if(Gdx.input.isKeyPressed(Keys.UP)){
-              mainCharacter.setNextDirection(mainCharacter.DIRECTION_UP);
-              mainCharacter.body.applyLinearImpulse(0, 
-                                                    5f/GameWorld.PPM, 
-                                                    pos.x, pos.y, true);
+                mainCharacter.move(0, mainCharacter.SPEED_UP);
             }
-        }else{
-//                mainCharacter.SPEED = 1;
-                mainCharacter.setNextDirection(mainCharacter.DIRECTION_STILL);
-             }
-        
-            
     }
 
     @Override

@@ -23,7 +23,7 @@ public class GameWorld {
     public static final int PPM = 100;
     
     
-    public static World world = new World(new Vector2(0, -1), true); 
+    public static World world = new World(new Vector2(0, -8f), true); 
     
 
     public GameWorld(EscapeGame escapeGame) {
@@ -36,7 +36,7 @@ public class GameWorld {
     }
     
     public void update(float deta){
-        mainCharacter.moveUpdate();
+        //mainCharacter.moveUpdate();
         world.step(1/60f, 6, 2);
     }
 }
