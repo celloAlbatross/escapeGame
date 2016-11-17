@@ -26,7 +26,7 @@ public class GameScreen extends ScreenAdapter {
 
     
     public GameScreen (EscapeGame escapeGame) {
-        this.escapeGame = escapeGame;  
+        this.escapeGame = escapeGame;
        
         gameWorld = new GameWorld(escapeGame);
         worldRenderer = new WorldRenderer(escapeGame,gameWorld);
@@ -49,16 +49,16 @@ public class GameScreen extends ScreenAdapter {
     
     private void updateMainCharacterDirection() {
         
-            if(Gdx.input.isKeyPressed(Keys.LEFT)){
+            if(Gdx.input.isKeyPressed(Keys.LEFT)&& vel.x > -mainCharacter.MAX_VELOSITY){
                 mainCharacter.move(mainCharacter.SPEED_LEFT, 0);
             }
-            if(Gdx.input.isKeyPressed(Keys.RIGHT)){
+            if(Gdx.input.isKeyPressed(Keys.RIGHT)&& vel.x < mainCharacter.MAX_VELOSITY){
                 mainCharacter.move(mainCharacter.SPEED_RIGHT, 0);
             }
-            if(Gdx.input.isKeyPressed(Keys.DOWN)){
+            if(Gdx.input.isKeyPressed(Keys.DOWN)&& vel.y > -mainCharacter.MAX_VELOSITY){
                 mainCharacter.move(0, mainCharacter.SPEED_DOWN);
             }
-            if(Gdx.input.isKeyPressed(Keys.UP)){
+            if(Gdx.input.isKeyPressed(Keys.UP)&& vel.y < mainCharacter.MAX_VELOSITY){
                 mainCharacter.move(0, mainCharacter.SPEED_UP);
             }
     }

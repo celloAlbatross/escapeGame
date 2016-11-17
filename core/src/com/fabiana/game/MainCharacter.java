@@ -24,7 +24,7 @@ public class MainCharacter {
     public final float SPEED_UP = 6f;
     public final float SPEED_DOWN = -0.3f;
     
-    //public final float MAX_VELOSITY = 2f/100;
+    public final float MAX_VELOSITY = 0.2f;
     
    
     public MainCharacter(int x,int y,World world){

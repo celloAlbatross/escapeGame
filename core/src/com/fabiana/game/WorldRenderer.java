@@ -18,9 +18,10 @@ public class WorldRenderer {
     private Texture characterImg;
     private Texture characterImg1;
     private Texture backGround;
-    private Texture Rock;
+    private Texture rockImg;
     
     private MainCharacter mainCharacter;
+    private Rock rock;
     private SpriteBatch batch;
     
     private OrthographicCamera camera;
@@ -37,15 +38,14 @@ public class WorldRenderer {
         
         this.gameWorld = gameWorld;
 
-        characterImg = new Texture("25%_main_character.png");
-        characterImg1 = new Texture("main_character_1.png");
-        backGround = new Texture("BADLAND-day.jpg");
-        //Rock = new Texture("Rock.png");
+        setPicture();
         
-        mainCharacter = gameWorld.getMainCharacter();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, escapeGame.WIDTH/GameWorld.PPM, 
                             escapeGame.HEIGHT/GameWorld.PPM);
+        
+        mainCharacter = gameWorld.getMainCharacter();
+        rock = gameWorld.getRock();
     }
     
     public void render(float delta){
@@ -57,6 +57,7 @@ public class WorldRenderer {
         }
         batch.draw(backGround, mapSpeed, -200);
         flyRenderer();
+        rockRenderer();
         batch.end();
         
         debugRenderer.render(gameWorld.world,camera.combined);
@@ -72,11 +73,30 @@ public class WorldRenderer {
         //batch.draw(Rock, 100, 100, 100, 100);
         Vector2 pos = mainCharacter.body.getPosition();
         if(count < 15){
-            batch.draw(characterImg, pos.x * GameWorld.PPM - characterImg.getWidth() / 2, pos.y * GameWorld.PPM - characterImg.getHeight() / 2);
+            batch.draw(characterImg, 
+                       pos.x * GameWorld.PPM - characterImg.getWidth() / 2, 
+                       pos.y * GameWorld.PPM - characterImg.getHeight() / 2);
             
         }else{
-                batch.draw(characterImg1, pos.x * GameWorld.PPM - characterImg1.getWidth() / 2, pos.y * GameWorld.PPM - characterImg1.getHeight() / 2);
+            batch.draw(characterImg1, 
+                       pos.x * GameWorld.PPM - characterImg1.getWidth() / 2, 
+                       pos.y * GameWorld.PPM - characterImg1.getHeight() / 2);
             
         }
+    }
+    
+    public void setPicture(){
+        characterImg = new Texture("25%_main_character.png");
+        characterImg1 = new Texture("main_character_1.png");
+        backGround = new Texture("BADLAND-day.jpg");
+        rockImg = new Texture("Rock.png");
+    }
+    
+    public void rockRenderer(){
+        Vector2 pos = rock.body.getPosition();
+        batch.draw(rockImg, 
+                   pos.x * GameWorld.PPM - rockImg.getWidth() / 2, 
+                   pos.y * GameWorld.PPM - rockImg.getHeight() / 2);
+
     }
 }
