@@ -18,16 +18,18 @@ public class Rock {
     
     public Body body;
     
+    public static final int numRock = 1000;
+    
     public Rock(World world){
         this.world = world;
                         
-        initBody();
+        initBody(randomWithRange(10, 800), randomWithRange(1000, 70000));
     }
     
-    public void initBody(){
+    public void initBody(int x, int y){
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(200/GameWorld.PPM, 400/GameWorld.PPM);
+        bodyDef.position.set(x/GameWorld.PPM, y/GameWorld.PPM);
         body = world.createBody(bodyDef);
 
              
@@ -42,4 +44,11 @@ public class Rock {
         Fixture fixture = body.createFixture(fixtureDef);
         circle.dispose();
     }
+    
+    int randomWithRange(int min, int max)
+    {
+       int range = (max - min) + 1;     
+       return (int)(Math.random() * range) + min;
+    }
+
 }

@@ -21,7 +21,7 @@ public class WorldRenderer {
     private Texture rockImg;
     
     private MainCharacter mainCharacter;
-    private Rock rock;
+    private Rock[] rock;
     private SpriteBatch batch;
     
     private OrthographicCamera camera;
@@ -53,7 +53,7 @@ public class WorldRenderer {
         batch.begin();
         
         if(mapSpeed > -1110){
-            mapSpeed -= 1;
+            mapSpeed -= 2;
         }
         batch.draw(backGround, mapSpeed, -200);
         flyRenderer();
@@ -93,10 +93,14 @@ public class WorldRenderer {
     }
     
     public void rockRenderer(){
-        Vector2 pos = rock.body.getPosition();
-        batch.draw(rockImg, 
+        for (int i = 0; i < Rock.numRock; i++) {
+            Vector2 pos = rock[i].body.getPosition();
+            batch.draw(rockImg, 
                    pos.x * GameWorld.PPM - rockImg.getWidth() / 2, 
                    pos.y * GameWorld.PPM - rockImg.getHeight() / 2);
+            
+        }
+        
 
     }
 }

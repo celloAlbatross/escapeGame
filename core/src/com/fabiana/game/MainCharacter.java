@@ -19,9 +19,9 @@ public class MainCharacter {
     private Vector2 vel ;
     private Vector2 pos ;
     
-    public final float SPEED_RIGHT = 0.8f;
-    public final float SPEED_LEFT = -0.8f;
-    public final float SPEED_UP = 6f;
+    public final float SPEED_RIGHT = 200f;
+    public final float SPEED_LEFT = -200f;
+    public final float SPEED_UP = 3000f;
     public final float SPEED_DOWN = -0.3f;
     
     public final float MAX_VELOSITY = 0.2f;
@@ -56,7 +56,7 @@ public class MainCharacter {
         circle.setRadius(30f/GameWorld.PPM);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
-        fixtureDef.density = 0.8f; 
+        fixtureDef.density = 200f; 
         fixtureDef.friction = 0.4f;
         fixtureDef.restitution = 0.6f;
         

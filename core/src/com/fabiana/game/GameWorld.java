@@ -8,6 +8,7 @@ package com.fabiana.game;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,7 +17,9 @@ import com.badlogic.gdx.physics.box2d.World;
 public class GameWorld {
     private MainCharacter mainCharacter;
     private EscapeGame escapeGame;
-    private Rock rock;
+    //private ArrayList<Rock> rock = new ArrayList<Rock>();
+    private Rock[] rock = new Rock[Rock.numRock];
+    //private Rock rockky = new Rock(world);
     
     public static int SPWAN_AT_X = 60;
     public static int SPWAN_AT_Y = 150;
@@ -30,14 +33,18 @@ public class GameWorld {
     public GameWorld(EscapeGame escapeGame) {
         this.escapeGame = escapeGame;
         mainCharacter = new MainCharacter(SPWAN_AT_X,SPWAN_AT_Y,world);
-        rock = new Rock(world);
+        
+        for (int i = 0; i < Rock.numRock; i++) {
+            rock[i] = new Rock(world);
+        }
+        
     }
      
     MainCharacter getMainCharacter(){
         return mainCharacter;
     }
     
-    Rock getRock(){
+    Rock[] getRock(){
         return rock;
     }
     
