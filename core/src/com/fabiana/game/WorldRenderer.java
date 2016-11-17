@@ -71,6 +71,7 @@ public class WorldRenderer {
             drawRock();
         }else {
             batch.draw(gameOver, 0, 0,EscapeGame.WIDTH,EscapeGame.HEIGHT);
+            
         }
        
         batch.end();
@@ -89,13 +90,13 @@ public class WorldRenderer {
         posMainChar = mainCharacter.body.getPosition();
         if(count < 15){
             batch.draw(characterImg, 
-                       posMainChar.x * GameWorld.PPM - characterImg.getWidth() / 2, 
-                       posMainChar.y * GameWorld.PPM - characterImg.getHeight() / 2);
+                       posMainChar.x * GameWorld.PPM - (characterImg.getWidth() / 2) , 
+                       posMainChar.y * GameWorld.PPM - (characterImg.getHeight() / 2) - 30);
             
         }else{
             batch.draw(characterImg1, 
-                       posMainChar.x * GameWorld.PPM - characterImg1.getWidth() / 2, 
-                       posMainChar.y * GameWorld.PPM - characterImg1.getHeight() / 2);
+                       posMainChar.x * GameWorld.PPM - (characterImg1.getWidth() / 2) , 
+                       posMainChar.y * GameWorld.PPM - (characterImg1.getHeight() / 2) - 30);
             
         }
     }
@@ -134,7 +135,7 @@ public class WorldRenderer {
     }
     
     public void mapRenderer(){
-        if (mapSpeed > -1110 ) {
+        if (mapSpeed > -650 ) {
             mapSpeed -= 2;
         }else {
             mapSpeed = 0;

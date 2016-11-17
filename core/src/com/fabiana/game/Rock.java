@@ -24,14 +24,15 @@ public class Rock extends Sprite{
     
     public Body body;
     
-    public static final int numRock = 1;
+    public static final int numRock = 2;
     
     public Rock(World world){
         super(new Sprite(new Texture("Rock.png")));
         
         this.world = world;
                         
-        initBody(randomWithRange(10, 800), randomWithRange(800, 1200));
+        initBody(randomWithRange(0, EscapeGame.WIDTH), 
+                 randomWithRange(EscapeGame.HEIGHT, EscapeGame.HEIGHT+1200));
         
         setBounds(body.getPosition().x * GameWorld.PPM, 
                   body.getPosition().y * GameWorld.PPM, 100f, 100f);
@@ -51,7 +52,7 @@ public class Rock extends Sprite{
         circle.setRadius(35f/GameWorld.PPM);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
-        fixtureDef.density = 20f; 
+        fixtureDef.density = 60f; 
         fixtureDef.friction = 0.4f;
         fixtureDef.restitution = 0.6f;
         
