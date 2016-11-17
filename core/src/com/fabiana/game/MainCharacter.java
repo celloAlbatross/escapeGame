@@ -21,7 +21,7 @@ public class MainCharacter {
     
     public final float SPEED_RIGHT = 200f;
     public final float SPEED_LEFT = -200f;
-    public final float SPEED_UP = 3000f;
+    public final float SPEED_UP = 2500f;
     public final float SPEED_DOWN = -0.3f;
     
     public final float MAX_VELOSITY = 0.2f;
